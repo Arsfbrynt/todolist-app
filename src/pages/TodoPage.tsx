@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store';
 import { toggleTask, deleteTask, createTask, searchTasks } from '../store/action';
 import { Task } from '../store/types';
-import { TextField, Checkbox, Button, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
+import { TextField, Stack, Checkbox, Button, List, ListItem, ListItemText, Paper, Typography } from '@mui/material';
 import { Add, Search, Delete } from '@mui/icons-material';
 import { debounce } from 'lodash';
 
@@ -41,12 +41,12 @@ const TodoPage: React.FC = () => {
   const filteredTasks = tasks.filter((task: Task) => task.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
-    <div>
+    <Stack>
       <Typography variant="h4" component='h1' align="center" gutterBottom>
         Todo List
       </Typography>
       <Paper style={{ padding: '1rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+        <Stack style={{ display: 'block', alignItems: 'center', marginBottom: '1rem' }}>
           <TextField
             label="Cari Tasks"
             value={searchTerm}
@@ -74,7 +74,7 @@ const TodoPage: React.FC = () => {
               }
             }}
           />
-        </div>
+        </Stack>
         {filteredTasks.length > 0 ? (
           <List>
             {filteredTasks.map((task : Task) => (
@@ -98,7 +98,7 @@ const TodoPage: React.FC = () => {
           </>
         )}
       </Paper>
-    </div>
+    </Stack>
   );
 };
 
